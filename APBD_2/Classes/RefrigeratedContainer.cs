@@ -18,10 +18,10 @@ public class RefrigeratedContainer : Container
         {"Eggs", 19}
     };
 
-    public string ProductType { get; set; }
+    public string? ProductType { get; set; }
     public float Temperature { get; set; }
     
-    public RefrigeratedContainer(double height, double tareWeight, double depth, double maxLoadWeight, ContainerType containerType, float temperature) : base(height, tareWeight, depth, maxLoadWeight, containerType)
+    public RefrigeratedContainer(double height, double tareWeight, double depth, double maxLoadWeight, float temperature) : base(height, tareWeight, depth, maxLoadWeight, ContainerType.C)
     {
         Temperature = temperature;
     }
@@ -38,5 +38,15 @@ public class RefrigeratedContainer : Container
         base.LoadContainer(mass);
         ProductType = productType;
     }
-    
+
+    public override void EmptyContainer()
+    {
+        base.EmptyContainer();
+        ProductType = null;
+    }
+
+    public override string ToString()
+    {
+        return base.ToString() + $"\nTemperature: {Temperature}, Product Type: {(ProductType == null ? "Is empty" : ProductType)}";
+    }
 }

@@ -59,4 +59,9 @@ public class Container
             Mass += mass;
         }
     }
+
+    public override string ToString()
+    {
+        return $"Mass: {Mass}, Height: {Height}, Tare Weight: {TareWeight}, Depth: {Depth}, Max Load Weight: {MaxLoadWeight}, Serial Number: {SerialNumber}";
+    }
 }

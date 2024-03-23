@@ -12,7 +12,7 @@ public class LiquidContainer : Container, IHazardNotifier
     
     public LiquidType? LiquidType { get; set; }
 
-    public LiquidContainer(double height, double tareWeight, double depth, double maxLoadWeight, ContainerType containerType, LiquidType liquidType) : base(height, tareWeight, depth, maxLoadWeight, containerType)
+    public LiquidContainer(double height, double tareWeight, double depth, double maxLoadWeight, LiquidType liquidType) : base(height, tareWeight, depth, maxLoadWeight, ContainerType.L)
     {
         LiquidType = liquidType;
     }
@@ -39,5 +39,10 @@ public class LiquidContainer : Container, IHazardNotifier
     public void Notify()
     {
         Console.WriteLine($"Container {SerialNumber}: attempting to perform a dangerous operation");
+    }
+
+    public override string ToString()
+    {
+        return base.ToString() + $"Liquid Type: {(LiquidType == null ? "Is empty" : LiquidType)}";
     }
 }

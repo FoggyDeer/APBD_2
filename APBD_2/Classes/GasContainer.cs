@@ -4,12 +4,12 @@ namespace APBD_2.Classes;
 
 public class GasContainer : Container, IHazardNotifier
 {
-    public double Pressure { get; set; }
+    public double MaxPressure { get; set; }
 
 
-    public GasContainer(double height, double tareWeight, double depth, double maxLoadWeight, ContainerType containerType, double pressure) : base(height, tareWeight, depth, maxLoadWeight, containerType)
+    public GasContainer(double height, double tareWeight, double depth, double maxLoadWeight, double maxPressure) : base(height, tareWeight, depth, maxLoadWeight, ContainerType.G)
     {
-        Pressure = pressure;
+        MaxPressure = maxPressure;
     }
 
     public override void EmptyContainer()
@@ -23,5 +23,10 @@ public class GasContainer : Container, IHazardNotifier
     public void Notify()
     {
         Console.WriteLine($"Container {SerialNumber}: attempting to perform a dangerous operation");
+    }
+
+    public override string ToString()
+    {
+        return base.ToString() + $"\nMax Pressure: {MaxPressure}";
     }
 }
