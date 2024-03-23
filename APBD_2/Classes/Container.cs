@@ -26,8 +26,6 @@ public class Container
         _id = 0;
     }
 
-    protected int Id { get; } = _id;
-
     public double Mass { get; set; }
     public double Height { get; set; }
     public double TareWeight { get; set; }
@@ -42,10 +40,10 @@ public class Container
         TareWeight = tareWeight;
         Depth = depth;
         MaxLoadWeight = maxLoadWeight;
-        SerialNumber = $"KON-{containerType}-{Id}";
+        SerialNumber = $"KON-{containerType}-{_id}";
     }
 
-    public void EmptyContainer()
+    public virtual void EmptyContainer()
     {
         this.Mass = 0;
     }

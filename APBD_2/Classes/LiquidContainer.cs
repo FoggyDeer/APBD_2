@@ -32,6 +32,6 @@ public class LiquidContainer : Container, IHazardNotifier
 
     public void Notify()
     {
-        Console.WriteLine($"Container №{Id}: attempting to perform a dangerous operation");
+        Console.WriteLine($"Container {SerialNumber}: attempting to perform a dangerous operation");
     }
 }
