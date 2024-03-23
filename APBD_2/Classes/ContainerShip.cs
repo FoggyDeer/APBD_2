@@ -4,13 +4,13 @@ namespace APBD_2.Classes;
 
 public class ContainerShip
 {
-    public static readonly List<Container> Containers = new();
+    public readonly List<Container> Containers = new();
     public double MaxSpeed { get; }
     public double MaxContainerCount { get; }
     public double MaxContainersWeight { get; }
     private double _currentWeight = 0;
 
-    ContainerShip(double maxSpeed, int maxContainerCount, double maxContainersWeight)
+    public ContainerShip(double maxSpeed, int maxContainerCount, double maxContainersWeight)
     {
         MaxSpeed = maxSpeed;
         MaxContainerCount = maxContainerCount;
@@ -22,7 +22,7 @@ public class ContainerShip
 
         if (MaxContainerCount <= Containers.Count)
             throw new OverfillException("Max containers count limit exceeded!");
-        if(MaxContainersWeight <= _currentWeight + container.Mass)
+        if(MaxContainersWeight < _currentWeight + container.Mass)
             throw new OverfillException("Max containers weight limit exceeded!");
         Containers.Add(container);
         _currentWeight += container.Mass;
@@ -62,8 +62,11 @@ public class ContainerShip
 
     public override string ToString()
     {
-        string result = $"Max Speed: {MaxSpeed},\nMax Container Count: {MaxContainerCount}\nMax Containers Weight: {MaxContainersWeight}\n";
-        Containers.ForEach(i => result += ($"{i}\n"));
+        string result = $"Max Speed: {MaxSpeed}knot,\nMax Container Count: {MaxContainerCount}\nMax Containers Weight: {MaxContainersWeight}t\n";
+        for (int i = 0; i < Containers.Count; i++)
+        {
+            result += ($"{i}.{Containers[i]}\n");
+        }
         return result;
     }
 }

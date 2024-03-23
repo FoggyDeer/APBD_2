@@ -30,7 +30,7 @@ public class RefrigeratedContainer : Container
     {
         if (Products[productType] == null)
             throw new NoSuchProductException("There is no such product in list!");
-        if (productType != ProductType)
+        if (ProductType != null && productType != ProductType)
             throw new NotSameProductLoadedException("Trying to load different product!");
         if (Temperature > Products[productType])
             throw new WrongTemperatureException("Trying to load product with lower required temperature!");
@@ -47,6 +47,6 @@ public class RefrigeratedContainer : Container
 
     public override string ToString()
     {
-        return base.ToString() + $"\nTemperature: {Temperature}, Product Type: {(ProductType == null ? "Is empty" : ProductType)}";
+        return base.ToString() + $"\n--Temperature: {Temperature}C\u00b0, Product Type: {(ProductType == null ? "Is empty" : ProductType)}";
     }
 }

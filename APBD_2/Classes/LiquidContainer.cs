@@ -43,6 +43,6 @@ public class LiquidContainer : Container, IHazardNotifier
 
     public override string ToString()
     {
-        return base.ToString() + $"Liquid Type: {(LiquidType == null ? "Is empty" : LiquidType)}";
+        return base.ToString() + $"\n--Liquid Type: {(LiquidType == null ? "Is empty" : LiquidType)}";
     }
 }

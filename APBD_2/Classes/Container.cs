@@ -10,21 +10,7 @@ public enum ContainerType
 }
 public class Container
 {
-    private static int _id {
-        get
-        {
-            return _id++;
-        }
-        set
-        {
-            _id = value;
-        }
-    }
-
-    static Container()
-    {
-        _id = 0;
-    }
+    private static int _id = 0;
 
     public double Mass { get; set; }
     public double Height { get; set; }
@@ -40,9 +26,14 @@ public class Container
         TareWeight = tareWeight;
         Depth = depth;
         MaxLoadWeight = maxLoadWeight;
-        SerialNumber = $"KON-{containerType}-{_id}";
+        SerialNumber = $"KON-{containerType}-{GetId()}";
     }
 
+    public static int GetId()
+    {
+        return _id++;
+    }
+    
     public virtual void EmptyContainer()
     {
         this.Mass = 0;
@@ -62,6 +53,6 @@ public class Container
 
     public override string ToString()
     {
-        return $"Mass: {Mass}, Height: {Height}, Tare Weight: {TareWeight}, Depth: {Depth}, Max Load Weight: {MaxLoadWeight}, Serial Number: {SerialNumber}";
+        return $"Mass: {Mass}kg, Height: {Height}cm, Tare Weight: {TareWeight}kg, Depth: {Depth}cm, Max Load Weight: {MaxLoadWeight}kg, Serial Number: {SerialNumber}";
     }
 }

@@ -27,6 +27,6 @@ public class GasContainer : Container, IHazardNotifier
 
     public override string ToString()
     {
-        return base.ToString() + $"\nMax Pressure: {MaxPressure}";
+        return base.ToString() + $"\n--Max Pressure: {MaxPressure}Pa";
     }
 }
