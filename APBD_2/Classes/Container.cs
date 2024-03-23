@@ -33,7 +33,7 @@ public class Container
     public double MaxLoadWeight { get; set; }
     public string SerialNumber { get; set; }
 
-    public Container(double height, double tareWeight, double depth, double maxLoadWeight, string containerType)
+    public Container(double height, double tareWeight, double depth, double maxLoadWeight, ContainerType containerType)
     {
         Mass = 0;
         Height = height;
@@ -50,13 +50,13 @@ public class Container
 
     public virtual void LoadContainer(double mass)
     {
-        if (mass > MaxLoadWeight)
+        if (Mass + mass > MaxLoadWeight)
         {
             throw new OverfillException("Provided mass is bigger than max load weight!");
         }
         else
         {
-            Mass = mass;
+            Mass += mass;
         }
     }
 }

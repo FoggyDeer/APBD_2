@@ -10,9 +10,9 @@ public enum LiquidType
 public class LiquidContainer : Container, IHazardNotifier
 {
     
-    public LiquidType LiquidType { get; set; }
+    public LiquidType? LiquidType { get; set; }
 
-    public LiquidContainer(double height, double tareWeight, double depth, double maxLoadWeight, string containerType, LiquidType liquidType) : base(height, tareWeight, depth, maxLoadWeight, containerType)
+    public LiquidContainer(double height, double tareWeight, double depth, double maxLoadWeight, ContainerType containerType, LiquidType liquidType) : base(height, tareWeight, depth, maxLoadWeight, containerType)
     {
         LiquidType = liquidType;
     }
@@ -20,14 +20,20 @@ public class LiquidContainer : Container, IHazardNotifier
     public override void LoadContainer(double mass)
     {
         base.LoadContainer(mass);
-        if (LiquidType == LiquidType.Dangerous && mass > MaxLoadWeight / 2)
+        if (LiquidType == Classes.LiquidType.Dangerous && Mass > MaxLoadWeight / 2)
         {
             Notify();
         }
-        else if (LiquidType == LiquidType.Safe && mass > MaxLoadWeight * 0.9)
+        else if (LiquidType == Classes.LiquidType.Safe && Mass > MaxLoadWeight * 0.9)
         {
             Notify();
         }
+    }
+
+    public override void EmptyContainer()
+    {
+        base.EmptyContainer();
+        LiquidType = null;
     }
 
     public void Notify()
