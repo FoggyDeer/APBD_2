@@ -22,10 +22,10 @@ public class ContainerShip
 
         if (MaxContainerCount <= Containers.Count)
             throw new OverfillException("Max containers count limit exceeded!");
-        if(MaxContainersWeight < _currentWeight + container.Mass)
+        if(MaxContainersWeight < _currentWeight + container.FullWeight)
             throw new OverfillException("Max containers weight limit exceeded!");
         Containers.Add(container);
-        _currentWeight += container.Mass;
+        _currentWeight += container.FullWeight;
     }
     
     public void AddContainers(List<Container> containers)

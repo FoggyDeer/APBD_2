@@ -19,6 +19,8 @@ public class Container
     public double MaxLoadWeight { get; set; }
     public string SerialNumber { get; set; }
 
+    public double FullWeight => Mass + TareWeight;
+
     public Container(double height, double tareWeight, double depth, double maxLoadWeight, ContainerType containerType)
     {
         Mass = 0;
